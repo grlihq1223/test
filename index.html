@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 챗봇</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 80%;
+            max-width: 500px;
+        }
+        h1 {
+            text-align: center;
+            color: black;
+        }
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .login-options button {
+            padding: 10px;
+            border: none;
+            background-color: black;
+            color: white;
+            cursor: pointer;
+        }
+        .chat-container {
+            display: none;
+            height: 300px;
+            border: 1px solid black;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+        .input-container {
+            display: flex;
+        }
+        #user-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid black;
+        }
+        #send-button {
+            padding: 10px;
+            background-color: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AI 챗봇</h1>
+        <div id="login-section">
+            <div class="login-options">
+                <button onclick="login('일반')">일반 회원가입</button>
+                <button onclick="login('비회원')">비회원으로 사용</button>
+                <button onclick="login('구글')">구글 로그인</button>
+            </div>
+        </div>
+        <div id="chat-section" style="display:none;">
+            <div class="chat-container" id="chat-container"></div>
+            <div class="input-container">
+                <input type="text" id="user-input" placeholder="메시지를 입력하세요...">
+                <button id="send-button" onclick="sendMessage()">전송</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function login(type) {
+            // 실제 로그인 로직은 여기에 구현해야 합니다
+            alert(type + " 로그인이 완료되었습니다.");
+            document.getElementById('login-section').style.display = 'none';
+            document.getElementById('chat-section').style.display = 'block';
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('user-input');
+            const message = input.value;
+            if (message) {
+                addMessageToChat('사용자: ' + message);
+                // 여기에 AI 응답 로직을 구현해야 합니다
+                setTimeout(() => addMessageToChat('AI: 죄송합니다. 아직 AI 응답 기능이 구현되지 않았습니다.'), 1000);
+                input.value = '';
+            }
+        }
+
+        function addMessageToChat(message) {
+            const chatContainer = document.getElementById('chat-container');
+            const messageElement = document.createElement('p');
+            messageElement.textContent = message;
+            chatContainer.appendChild(messageElement);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+    </script>
+</body>
+</html>
